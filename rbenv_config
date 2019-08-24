@@ -1,0 +1,51 @@
+[ec2-user@ip-192-168-100-1 ~]$ git clone https://github.com/rbenv/rbenv.git .renv
+Cloning into '.renv'...
+remote: Enumerating objects: 2759, done.
+remote: Total 2759 (delta 0), reused 0 (delta 0), pack-reused 2759
+Receiving objects: 100% (2759/2759), 526.02 KiB | 788.00 KiB/s, done.
+Resolving deltas: 100% (1731/1731), done.
+[ec2-user@ip-192-168-100-1 ~]$ cat .bashrc 
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+[ec2-user@ip-192-168-100-1 ~]$ echo 'export PATH="$HOME/.renv/bin:$PATH"' >> ~/.bashrc
+[ec2-user@ip-192-168-100-1 ~]$ cat .bashrc 
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+export PATH="$HOME/.renv/bin:$PATH"
+[ec2-user@ip-192-168-100-1 ~]$ echo 'eval "$(rbenv init -)"'  >> ~/.bashrc
+[ec2-user@ip-192-168-100-1 ~]$ cat .bashrc 
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+export PATH="$HOME/.renv/bin:$PATH"
+eval "$(rbenv init -)"
+[ec2-user@ip-192-168-100-1 ~]$ source ~/.bashrc
+[ec2-user@ip-192-168-100-1 ~]$ rbenv -v
+rbenv 1.1.2-2-g4e92322
+[ec2-user@ip-192-168-100-1 ~]$ 

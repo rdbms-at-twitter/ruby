@@ -49,3 +49,21 @@ eval "$(rbenv init -)"
 [ec2-user@ip-192-168-100-1 ~]$ rbenv -v
 rbenv 1.1.2-2-g4e92322
 [ec2-user@ip-192-168-100-1 ~]$ 
+
+
+
+
+[ec2-user@ip-192-168-100-1 ruby]$ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+Cloning into '/home/ec2-user/.rbenv/plugins/ruby-build'...
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 9792 (delta 0), reused 0 (delta 0), pack-reused 9791
+Receiving objects: 100% (9792/9792), 2.07 MiB | 2.07 MiB/s, done.
+Resolving deltas: 100% (6365/6365), done.
+[ec2-user@ip-192-168-100-1 ruby]$
+
+
+##### Recommend for Ruby Env (Please check for each environment)
+https://github.com/rbenv/ruby-build/wiki
+yum install -y gcc-6 bzip2 openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
+

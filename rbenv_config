@@ -67,3 +67,31 @@ Resolving deltas: 100% (6365/6365), done.
 https://github.com/rbenv/ruby-build/wiki
 yum install -y gcc-6 bzip2 openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel
 
+
+[ec2-user@ip-172-30-2-137 ~]$ rbenv install 2.5.1
+Downloading ruby-2.5.1.tar.bz2...
+-> https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.bz2
+Installing ruby-2.5.1...
+Installed ruby-2.5.1 to /home/ec2-user/.rbenv/versions/2.5.1
+
+[ec2-user@ip-172-30-2-137 ~]$ rbenv global 2.5.1
+[ec2-user@ip-172-30-2-137 ~]$ ruby --version
+ruby 2.4.4p296 (2018-03-28 revision 63013) [x86_64-linux]
+[ec2-user@ip-172-30-2-137 ~]$ 
+
+
+
+[ec2-user@ip-172-30-2-137 ~]$ .rbenv/versions/2.5.1/bin/ruby --version
+ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]
+[ec2-user@ip-172-30-2-137 ~]$ 
+
+[ec2-user@ip-172-30-2-137 ~]$ ruby --version
+ruby 2.4.4p296 (2018-03-28 revision 63013) [x86_64-linux]
+[ec2-user@ip-172-30-2-137 ~]$ which ruby
+~/.rbenv/shims/ruby
+
+[ec2-user@ip-172-30-2-137 ~]$ source ~/.bash_profile 
+[ec2-user@ip-172-30-2-137 ~]$ ruby -v
+ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]
+[ec2-user@ip-172-30-2-137 ~]$ 
+

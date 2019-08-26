@@ -1,0 +1,88 @@
+[ec2-user@ip-192-168-100-1 ~]$ gem update --system
+Updating rubygems-update
+Fetching: rubygems-update-3.0.6.gem (100%)
+Successfully installed rubygems-update-3.0.6
+Parsing documentation for rubygems-update-3.0.6
+Installing ri documentation for rubygems-update-3.0.6
+Installing darkfish documentation for rubygems-update-3.0.6
+Done installing documentation for rubygems-update after 45 seconds
+Parsing documentation for rubygems-update-3.0.6
+Done installing documentation for rubygems-update after 0 seconds
+Installing RubyGems 3.0.6
+Bundler 1.17.3 installed
+RubyGems 3.0.6 installed
+Regenerating binstubs
+Parsing documentation for rubygems-3.0.6
+Installing ri documentation for rubygems-3.0.6
+
+=== 3.0.6 / 2019-08-17
+
+[ec2-user@ip-192-168-100-1 ~]$ gem -v
+3.0.6
+[ec2-user@ip-192-168-100-1 ~]$ gem list
+
+*** LOCAL GEMS ***
+
+bigdecimal (default: 1.3.4)
+bundler (default: 1.17.3)
+cmath (default: 1.0.0)
+csv (default: 1.0.0)
+date (default: 1.0.0)
+dbm (default: 1.0.0)
+did_you_mean (1.2.0)
+etc (default: 1.0.0)
+fcntl (default: 1.0.0)
+fiddle (default: 1.0.0)
+fileutils (default: 1.0.2)
+gdbm (default: 2.0.0)
+io-console (default: 0.4.6)
+ipaddr (default: 1.2.0)
+json (default: 2.1.0)
+minitest (5.10.3)
+net-telnet (0.1.1)
+openssl (default: 2.1.0)
+power_assert (1.1.1)
+psych (default: 3.0.2)
+rake (12.3.0)
+rdoc (default: 6.0.1)
+rubygems-update (3.0.6)
+scanf (default: 1.0.0)
+sdbm (default: 1.0.0)
+stringio (default: 0.0.1)
+strscan (default: 1.0.0)
+test-unit (3.2.7)
+webrick (default: 1.4.2)
+xmlrpc (0.3.0)
+zlib (default: 1.0.0)
+[ec2-user@ip-192-168-100-1 ~]$ 
+
+
+
+[ec2-user@ip-192-168-100-1 ~]$ gem install rails -v 5.2.1
+Fetching concurrent-ruby-1.1.5.gem
+Fetching tzinfo-1.2.5.gem
+Fetching activesupport-5.2.1.gem
+Fetching thread_safe-0.3.6.gem
+Fetching i18n-1.6.0.gem
+Fetching mini_portile2-2.4.0.gem
+Fetching rails-dom-testing-2.0.3.gem
+Fetching loofah-2.2.3.gem
+Fetching nokogiri-1.10.4.gem
+Fetching actionview-5.2.1.gem
+Fetching crass-1.0.4.gem
+
+<SNIP>
+
+Parsing documentation for actionmailer-5.2.1
+Installing ri documentation for actionmailer-5.2.1
+Parsing documentation for rails-5.2.1
+Installing ri documentation for rails-5.2.1
+Done installing documentation for concurrent-ruby, thread_safe, tzinfo, i18n, activesupport, mini_portile2, nokogiri, rails-dom-testing, crass, loofah, rails-html-sanitizer, erubi, builder, actionview, rack, rack-test, actionpack, sprockets, sprockets-rails, method_source, thor, railties, mimemagic, marcel, arel, activemodel, activerecord, activestorage, websocket-extensions, websocket-driver, nio4r, actioncable, globalid, activejob, mini_mime, mail, actionmailer, rails after 47 seconds
+38 gems installed
+[ec2-user@ip-192-168-100-1 ~]$ 
+
+[ec2-user@ip-192-168-100-1 ~]$ rails -v
+Rails 5.2.1
+[ec2-user@ip-192-168-100-1 ~]$ 
+
+

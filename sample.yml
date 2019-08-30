@@ -1,0 +1,18 @@
+#$ bin/rails c
+#Running via Spring preloader in process 4562
+#Loading development environment (Rails 5.2.3)
+#irb(main):001:0> YAML.load_file('./sample.yml')
+#=> {"animal"=>{"cat"=>"ネコ", "dog"=>"イヌ", "horse"=>"ウマ", "tigar"=>"トラ", "animal_shop"=>{"cat"=>"ネコ", "dog"=>"イヌ", "horse"=>"ウマ", "tigar"=>"トラ"}, "parrot"=>"オウム"}}
+#irb(main):002:0> 
+
+
+
+animal: &animal
+ cat: 'ネコ'
+ dog: 'イヌ'
+ horse: 'ウマ'
+ tigar: 'トラ'
+
+ animal_shop:
+     <<: *animal
+ parrot: 'オウム'

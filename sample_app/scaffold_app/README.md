@@ -5,20 +5,17 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* This is simple evaluation for redcarpet and coderay for using  Syntax highlighter
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Generate Sample and modify application_helper.rb and show.html.erb for testing purpose.
+```
+shinya@DESKTOP-A5QLPD0:~/scaffold_app$ rails generate scaffold Article title:string body:text
+shinya@DESKTOP-A5QLPD0:~/scaffold_app$ bundle exec rake db:migrate
+== 20191130015524 CreateArticles: migrating ===================================
+-- create_table(:articles)
+   -> 0.0513s
+== 20191130015524 CreateArticles: migrated (0.0522s) ==========================
+```
 
 * ...

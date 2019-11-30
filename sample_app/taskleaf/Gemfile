@@ -67,3 +67,6 @@ gem 'html2slim'
 
 ### 以下、かっこよくするためにBootstrapを追加する
 gem 'bootstrap'
+
+### Update Rubyzip
+gem "rubyzip", ">= 1.3.0"

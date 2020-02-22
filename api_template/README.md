@@ -1,128 +1,105 @@
-# Initialization
-Simply run the following commands in your terminal.
+# In case if your rails is new than this version.
+
 
 ```
-$ bundle install
-$ rake db:migrate
-```
+root@DESKTOP-A5QLPD0:~/db_kb/api_template# bundle exec rake db:migrate
+== 20200222075028 CreateApisamples: migrating =================================
+-- create_table(:apisamples)
+   -> 0.0010s
+== 20200222075028 CreateApisamples: migrated (0.0017s) ========================
 
-After running the commands above, run `rails s` to make the api up and running.
+root@DESKTOP-A5QLPD0:~/db_kb/api_template#
 
-# Testing
-First of all, create some data by running the code below.
 
-```console
-$ rake db:seed
+
+root@DESKTOP-A5QLPD0:~/db_kb/api_template# bundle exec rake routes
+           Prefix Verb   URI Pattern                      Controller#Action
+api_v1_apisamples GET    /api/v1/apisamples(.:format)     api/v1/apisamples#index
+                  POST   /api/v1/apisamples(.:format)     api/v1/apisamples#create
+ api_v1_apisample GET    /api/v1/apisamples/:id(.:format) api/v1/apisamples#show
+                  PATCH  /api/v1/apisamples/:id(.:format) api/v1/apisamples#update
+                  PUT    /api/v1/apisamples/:id(.:format) api/v1/apisamples#update
+                  DELETE /api/v1/apisamples/:id(.:format) api/v1/apisamples#destroy
+root@DESKTOP-A5QLPD0:~/db_kb/api_template#
 ```
 
 # Get posts
-Now you can use [Postman](https://www.getpostman.com/) to test if the api is working properly.
-Make a `get` request to `http://localhost:3000/api/v1/posts` and you will get the json formatted data like the code below.
+
+Make a `get` request to `http://localhost:3000/api/v1/apisamples` and you will get the json formatted data like the code below.
 
 ```json
 {
     "status": "SUCCESS",
-    "message": "loaded posts",
+    "message": "Loaded apisamples",
     "data": [
         {
             "id": 3,
-            "title": "title3",
-            "created_at": "2018-12-20T00:47:13.266Z",
-            "updated_at": "2018-12-20T00:47:13.266Z"
+            "name": "api test3",
+            "created_at": "2020-02-22T08:01:29.530Z",
+            "updated_at": "2020-02-22T08:01:29.530Z"
         },
         {
             "id": 2,
-            "title": "title2",
-            "created_at": "2018-12-20T00:47:09.688Z",
-            "updated_at": "2018-12-20T00:47:09.688Z"
+            "name": "api test2",
+            "created_at": "2020-02-22T08:01:27.519Z",
+            "updated_at": "2020-02-22T08:01:27.519Z"
         },
         {
             "id": 1,
-            "title": "title1",
-            "created_at": "2018-12-20T00:47:02.036Z",
-            "updated_at": "2018-12-20T00:47:02.036Z"
+            "name": "Update from Postman",
+            "created_at": "2020-02-22T08:01:23.058Z",
+            "updated_at": "2020-02-22T08:05:03.332Z"
         }
     ]
 }
 ```
 
 # Get a post
-Make a `get` request to `http://localhost:3000/api/v1/posts/post_id`(ex:`http://localhost:3000/api/v1/posts/2`).
-The API would return something like the data below.
+Make a `get` request to `http://localhost:3000/api/v1/apisamples/post_id`
 
 ```json
+
 {
     "status": "SUCCESS",
-    "message": "Loaded the post",
+    "message": "Loaded the apisample",
     "data": {
-        "id": 2,
-        "title": "title2",
-        "created_at": "2018-12-20T01:58:00.104Z",
-        "updated_at": "2018-12-20T01:58:00.104Z"
+        "id": 1,
+        "name": "Update from Postman",
+        "created_at": "2020-02-22T08:01:23.058Z",
+        "updated_at": "2020-02-22T08:05:03.332Z"
     }
 }
+
 ```
+
 
 # Create a post
-Make a `post` request to `http://localhost:3000/api/v1/posts` with the data like the following code.
+Make a `post` request to `http://localhost:3000/api/v1/apisamples`
 
 ```json
 {
-    "title": "New_title"
+  "name":"Post from Postman"
 }
-```
-The API would return something like this.
 
-```json
-{
-    "status": "SUCCESS",
-    "data": {
-        "id": 4,
-        "title": "New_title",
-        "created_at": "2018-12-20T02:15:30.945Z",
-        "updated_at": "2018-12-20T02:15:30.945Z"
-    }
-}
 ```
 
 # Update a post
-Make a `put` or `patch` request to `http://localhost:3000/api/v1/posts/post_id`(ex:`http://localhost:3000/api/v1/posts/4`) with the data like the code below.
+Make a `put` or `patch` request to `http://localhost:3000/api/v1/apisamples/post_id` 
 
 ```json
-{
- "title": "Updated_title"
-}
-```
 
-The API would return something like this.
-
-```
 {
-    "status": "SUCCESS",
-    "message": "Updated the post",
-    "data": {
-        "id": 4,
-        "title": "Updated_title",
-        "created_at": "2018-12-20T01:58:12.051Z",
-        "updated_at": "2018-12-20T02:17:47.830Z"
-    }
+  "name":"Update from Postman"
 }
+
 ```
 
 # Delete a post
-Make a `put` or `patch` request to `http://localhost:3000/api/v1/posts/post_id`(ex:`http://localhost:3000/api/v1/posts/4`).
+Make a `put` or `patch` request to `http://localhost:3000/api/v1/apisamples/post_id`
 
-The API would return something like this if the data was successfully deleted.
 
-```json
-{
-    "status": "SUCCESS",
-    "message": "Deleted the post",
-    "data": {
-        "id": 4,
-        "title": "Updated_title",
-        "created_at": "2018-12-20T01:58:12.051Z",
-        "updated_at": "2018-12-20T02:17:47.830Z"
-    }
-}
-```
+
+# Tool
+You can use [Postman](https://www.getpostman.com/) to test if the api is working properly.
+
+

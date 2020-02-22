@@ -95,7 +95,7 @@ Make a `put` or `patch` request to `http://localhost:3000/api/v1/apisamples/post
 ```
 
 # Delete a post
-Make a `put` or `patch` request to `http://localhost:3000/api/v1/apisamples/post_id`
+Make a `delete` request to `http://localhost:3000/api/v1/apisamples/post_id`
 
 
 

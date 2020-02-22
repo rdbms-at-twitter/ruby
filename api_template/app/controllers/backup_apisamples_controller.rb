@@ -1,0 +1,2 @@
+class ApisamplesController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class Apisample < ApplicationRecord
+end

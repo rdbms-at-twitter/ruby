@@ -1,0 +1,253 @@
+### Create Model
+
+root@DESKTOP-A5QLPD0:~/taskleaf# rails generate model apisample name:string
+/home/shinya/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-6.0.2.1/lib/rails/app_loader.rb:53: warning: Insecure world writable dir /home/shinya/.rbenv/versions in PATH, mode 040777
+Running via Spring preloader in process 1847
+      invoke  active_record
+      create    db/migrate/20200228213519_create_apisamples.rb
+      create    app/models/apisample.rb
+      invoke    test_unit
+      create      test/models/apisample_test.rb
+      invoke      factory_bot
+      create        test/factories/apisamples.rb
+
+
+
+### Create Controller
+
+root@DESKTOP-A5QLPD0:~/taskleaf# rails g controller apisamples
+/home/shinya/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-6.0.2.1/lib/rails/app_loader.rb:53: warning: Insecure world writable dir /home/shinya/.rbenv/versions in PATH, mode 040777
+Running via Spring preloader in process 1885
+      create  app/controllers/apisamples_controller.rb
+      invoke  slim
+      create    app/views/apisamples
+      invoke  test_unit
+      create    test/controllers/apisamples_controller_test.rb
+      invoke  helper
+      create    app/helpers/apisamples_helper.rb
+      invoke    test_unit
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/apisamples.coffee
+      invoke    scss
+      create      app/assets/stylesheets/apisamples.scss
+
+
+### Migration
+
+root@DESKTOP-A5QLPD0:~/taskleaf# rake db:migrate
+   (1.1ms)  SELECT pg_try_advisory_lock(3400679014569659550)
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+   (3.0ms)  SELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+Migrating to CreateApisamples (20200228213519)
+   (0.3ms)  BEGIN
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+== 20200228213519 CreateApisamples: migrating =================================
+-- create_table(:apisamples)
+   (53.3ms)  CREATE TABLE "apisamples" ("id" bigserial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)
+  ↳ db/migrate/20200228213519_create_apisamples.rb:3
+   -> 0.0564s
+== 20200228213519 CreateApisamples: migrated (0.0585s) ========================
+
+  ActiveRecord::SchemaMigration Create (1.3ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"  [["version", "20200228213519"]]
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+   (0.9ms)  COMMIT
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+  ActiveRecord::InternalMetadata Load (3.0ms)  SELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+   (0.3ms)  BEGIN
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+   (0.4ms)  COMMIT
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+   (0.5ms)  SELECT pg_advisory_unlock(3400679014569659550)
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+   (1.4ms)  SELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC
+  ↳ /home/shinya/.rbenv/versions/2.5.1/bin/rake:23
+root@DESKTOP-A5QLPD0:~/taskleaf#
+
+
+### Router設定
+
+root@DESKTOP-A5QLPD0:~/taskleaf# cat config/routes.rb
+Rails.application.routes.draw do
+#  get 'sessions/new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+ # match '/login', to: 'sessions#create', via: [:post, :patch, :put]
+
+  namespace :admin do
+  resources :users
+
+#    get 'users/new'
+#    get 'users/edit'
+#    get 'users/show'
+#    get 'users/index'
+  end
+#    get 'tasks/index'
+#    get 'tasks/show'
+#    get 'tasks/new'
+#    get 'tasks/edit'
+
+ root to: 'tasks#index'
+
+ #resourcesはgetやpostを定義する代わりに7つのアクションに対するルートを定義可能
+ resources :tasks do
+   post :confirm, action: :confirm_new, on: :new
+   post :import, on: :collection
+ end
+
+        # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace 'api' do
+       namespace 'v1' do
+           resources :apisamples
+     end
+  end
+
+
+
+end
+root@DESKTOP-A5QLPD0:~/taskleaf#
+
+
+### Routeの確認
+
+
+root@DESKTOP-A5QLPD0:~/taskleaf# rake routes
+                   Prefix Verb   URI Pattern                                                                              Controller#Action
+                    login GET    /login(.:format)                                                                         sessions#new
+                          POST   /login(.:format)                                                                         sessions#create
+                   logout DELETE /logout(.:format)                                                                        sessions#destroy
+              admin_users GET    /admin/users(.:format)                                                                   admin/users#index
+                          POST   /admin/users(.:format)                                                                   admin/users#create
+           new_admin_user GET    /admin/users/new(.:format)                                                               admin/users#new
+          edit_admin_user GET    /admin/users/:id/edit(.:format)                                                          admin/users#edit
+               admin_user GET    /admin/users/:id(.:format)                                                               admin/users#show
+                          PATCH  /admin/users/:id(.:format)                                                               admin/users#update
+                          PUT    /admin/users/:id(.:format)                                                               admin/users#update
+                          DELETE /admin/users/:id(.:format)                                                               admin/users#destroy
+                     root GET    /                                                                                        tasks#index
+         confirm_new_task POST   /tasks/new/confirm(.:format)                                                             tasks#confirm_new
+             import_tasks POST   /tasks/import(.:format)                                                                  tasks#import
+                    tasks GET    /tasks(.:format)                                                                         tasks#index
+                          POST   /tasks(.:format)                                                                         tasks#create
+                 new_task GET    /tasks/new(.:format)                                                                     tasks#new
+                edit_task GET    /tasks/:id/edit(.:format)                                                                tasks#edit
+                     task GET    /tasks/:id(.:format)                                                                     tasks#show
+                          PATCH  /tasks/:id(.:format)                                                                     tasks#update
+                          PUT    /tasks/:id(.:format)                                                                     tasks#update
+                          DELETE /tasks/:id(.:format)                                                                     tasks#destroy
+        api_v1_apisamples GET    /api/v1/apisamples(.:format)                                                             api/v1/apisamples#index
+                          POST   /api/v1/apisamples(.:format)                                                             api/v1/apisamples#create
+     new_api_v1_apisample GET    /api/v1/apisamples/new(.:format)                                                         api/v1/apisamples#new
+    edit_api_v1_apisample GET    /api/v1/apisamples/:id/edit(.:format)                                                    api/v1/apisamples#edit
+         api_v1_apisample GET    /api/v1/apisamples/:id(.:format)                                                         api/v1/apisamples#show
+                          PATCH  /api/v1/apisamples/:id(.:format)                                                         api/v1/apisamples#update
+                          PUT    /api/v1/apisamples/:id(.:format)                                                         api/v1/apisamples#update
+                          DELETE /api/v1/apisamples/:id(.:format)                                                         api/v1/apisamples#destroy
+       rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+root@DESKTOP-A5QLPD0:~/taskleaf#
+
+
+
+### Constrollerの設定
+
+
+root@DESKTOP-A5QLPD0:~/taskleaf/app/controllers/api/v1# cat apisamples_controller.rb
+class Api::V1::ApisamplesController < ApplicationController
+#class ApisamplesController < ApplicationController
+
+          def index
+                   apisamples = Apisample.order(created_at: :desc)
+                   render json: { status: 'SUCCESS', message: 'Loaded apisamples', data: apisamples }
+          end
+
+          def show
+                   apisample = Apisample.find(params[:id])
+                   render json: { status: 'SUCCESS', message: 'Loaded the apisample', data: apisample }
+          end
+
+          def create
+                   apisample = Apisample.new(apisample_params)
+                   if apisample.save
+                   render json: { status: 'SUCCESS', data: apisample }
+                   else
+                   render json: { status: 'ERROR', data: apisample.errors }
+                   end
+          end
+
+          def destroy
+                   apisample = Apisample.find(params[:id])
+                   apisample.destroy
+                   render json: { status: 'SUCCESS', message: 'Deleted the apisample', data: apisample }
+          end
+
+          def update
+                   apisample = Apisample.find(params[:id])
+                   if apisample.update(apisample_params)
+                   render json: { status: 'SUCCESS', message: 'Updated the apisample', data: apisample }
+                   else
+                   render json: { status: 'SUCCESS', message: 'Not updated', data: apisample }
+                   end
+           end
+
+           private
+                   def apisample_params
+                   params.require(:apisample).permit(:name)
+           end
+end
+root@DESKTOP-A5QLPD0:~/taskleaf/app/controllers/api/v1#
+
+
+### Sampleデータ
+
+root@DESKTOP-A5QLPD0:~/taskleaf/app/controllers/api/v1# rails c
+/home/shinya/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-6.0.2.1/lib/rails/app_loader.rb:53: warning: Insecure world writable dir /home/shinya/.rbenv/versions in PATH, mode 040777
+Running via Spring preloader in process 2388
+Loading development environment (Rails 5.2.4)
+irb(main):001:0> Apisample.create(name:'api test')
+   (0.3ms)  BEGIN
+  Apisample Create (2.6ms)  INSERT INTO "apisamples" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "api test"], ["created_at", "2020-02-29 06:47:43.958345"], ["updated_at", "2020-02-29 06:47:43.958345"]]
+   (0.7ms)  COMMIT
+=> #<Apisample id: 1, name: "api test", created_at: "2020-02-28 21:47:43", updated_at: "2020-02-28 21:47:43">
+irb(main):002:0> Apisample.create(name:'api test2')
+   (0.4ms)  BEGIN
+  Apisample Create (0.9ms)  INSERT INTO "apisamples" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "api test2"], ["created_at", "2020-02-29 06:47:51.570948"], ["updated_at", "2020-02-29 06:47:51.570948"]]
+   (2.1ms)  COMMIT
+=> #<Apisample id: 2, name: "api test2", created_at: "2020-02-28 21:47:51", updated_at: "2020-02-28 21:47:51">
+irb(main):003:0> Apisample.create(name:'api test3')
+   (0.4ms)  BEGIN
+  Apisample Create (0.6ms)  INSERT INTO "apisamples" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "api test3"], ["created_at", "2020-02-29 06:47:53.742078"], ["updated_at", "2020-02-29 06:47:53.742078"]]
+   (0.8ms)  COMMIT
+=> #<Apisample id: 3, name: "api test3", created_at: "2020-02-28 21:47:53", updated_at: "2020-02-28 21:47:53">
+irb(main):004:0>
+
+
+### Pumaの起動
+
+root@DESKTOP-A5QLPD0:~/taskleaf# bin/rails s
+=> Booting Puma
+=> Rails 5.2.4 application starting in development
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.2 (ruby 2.5.1-p57), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://localhost:3000
+Use Ctrl-C to stop
+
+
+### API動作確認
+
+http://localhost:3000/api/v1/apisamples
+http://localhost:3000/api/v1/apisamples/1
+http://localhost:3000/api/v1/apisamples/2
+
+

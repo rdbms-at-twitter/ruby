@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_231434) do
 
   create_table "prefectures", force: :cascade do |t|
     t.string "name", null: false, comment: "都道府県"
+    t.string "ename", null: false, comment: "英語表記"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

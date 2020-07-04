@@ -1,3 +1,3 @@
 class WeatherForecast < ApplicationRecord
- belongs_to : prefecture
+ belongs_to :prefecture
 end

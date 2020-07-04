@@ -1,3 +1,3 @@
 class Prefecture < ApplicationRecord
- has_many :weather_forecast
+ belongs_to :weather_forecasts
 end

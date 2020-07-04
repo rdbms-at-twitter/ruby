@@ -289,3 +289,23 @@ Initialized empty Git repository in /home/admin/app/ruby/weather/.git/
 [admin@postgresql weather]$ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [admin@postgresql weather]$ rails webpacker:install
 ```
+
+
+#### Railsの起動
+
+```
+[admin@postgresql weather]$ bin/rails s -b 0.0.0.0
+=> Booting Puma
+=> Rails 6.0.3.2 application starting in development 
+=> Run `rails server --help` for more startup options
+Puma starting in single mode...
+* Version 3.12.6 (ruby 2.7.1-p83), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://0.0.0.0:3000
+Use Ctrl-C to stop
+```
+railsでは無く、bin/railsコマンドを利用することで、
+bundle exec railsと同様にGemfile通りgemを利用可能。
+
+

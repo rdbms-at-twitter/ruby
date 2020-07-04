@@ -13,7 +13,14 @@
 #
 # Configure Using Gemfile
 # gem 'pg'
-#
+####################################################################
+#　bin/rails db:createにてデータベース作成
+#　ここで定義した内容をベースに処理データベースが作成される。
+#　railsでは無く、bin/railsコマンドを利用することで、
+#　bundle exec railsと同様にGemfile通りgemを利用可能。
+####################################################################
+
+
 default: &default
   adapter: postgresql
   encoding: unicode

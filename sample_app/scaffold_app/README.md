@@ -19,3 +19,14 @@ shinya@DESKTOP-A5QLPD0:~/scaffold_app$ bundle exec rake db:migrate
 ```
 
 * ...
+
+
+### Please Run with following command
+
+```
+ bin/rails s
+```
+or
+```
+ bin/rails s -b 0.0.0.0
+```

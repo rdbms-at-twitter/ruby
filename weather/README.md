@@ -309,3 +309,8 @@ railsでは無く、bin/railsコマンドを利用することで、
 bundle exec railsと同様にGemfile通りgemを利用可能。
 
 
+#### Web Service 
+
+- Virtual Machine等を利用して外部アクセスしたい場合。
+
+bin/rails s -b 0.0.0.0

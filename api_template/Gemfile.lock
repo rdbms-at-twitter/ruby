@@ -126,13 +126,13 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    nio4r (2.7.3)
+    nio4r (2.7.5)
     nokogiri (1.19.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     psych (5.1.2)
       stringio
-    puma (5.6.9)
+    puma (7.2.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.6)
@@ -226,7 +226,7 @@ DEPENDENCIES
   byebug
   factory_bot_rails
   listen (>= 3.0.5, < 3.2)
-  puma (~> 5.6)
+  puma (~> 7.2)
   rails (~> 7.0)
   rspec-rails
   spring
